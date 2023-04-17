@@ -8,12 +8,13 @@ pipeline {
         }
         stage('--test--') {
             steps {
-                sh "/opt/maven/bin/mvn test"
+                sh "/mvn test"
             }
         }
         stage('--package--') {
             steps {
-                sh "/opt/maven/bin/mvn package"
+                agent { label 'slave-node' }
+                sh "mvn package"
             }
         }
     }
